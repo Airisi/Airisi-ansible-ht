@@ -1,0 +1,10 @@
+---
+- name: Copy a file from local machine to remote host
+  hosts: all
+  become: yes  # 以 root 权限执行操作
+  tasks:
+    - name: Copy file to remote directory
+      copy:
+        src:   # 本地文件路径
+        dest:  # 目标路径
+        mode: '777'  # 设置文件权限
