@@ -1,0 +1,22 @@
+- name: Copy files from local machine to remote host
+  hosts: c61:c62:e130
+  become: yes  # 以 root 权限执行操作
+  tasks:
+    - name: Ensure /root/timelog directory exists
+      file:
+        path: /root/timelog
+        state: directory
+        mode: '0755'
+
+    - name: Copy file c61-sntp-timedlogger.sh to remote directory
+      copy:
+        src: sntp-timedlogger.sh
+        dest: /root/timelog/
+        mode: '0777'
+
+    - name: Copy file c61-adjtime-timedlogger.sh to remote directory
+      copy:
+        src: tick_freq-timedlogger.sh
+        dest: /root/timelog/
+        mode: '0777'
+
